@@ -12,9 +12,13 @@ public class BarberShop extends Thread {
     private int maxQueueSize;
     private int cuttingTimeFrom;
     private int cuttingTimeTo;
-    private long waitingTime;
-    private int amountOfClientWhoDoesntHavePlace; //clients which was generated, put into an array list, but they hadn't had free space at the queue
-
+    private int amountOfClientsWhoDoesntHavePlace; //clients which was generated, put into an array list, but they hadn't had free space at the queue
+    private int amountOfClientsWhoWaitedButWasNotCut;
+    private int amountOfClientsWhoWasCut;
+    private int amountOfClientsWhoWasStillCuttingAfterProgFinished;
+    private int generalCuttingTime;
+    private int generalWaitingTime;
+    private int amountOfClientsWhoEnteredAQueue;
 
     public BarberShop(int barbersAmount, int maxQueueSize, BufferedWriter writer) {
         this.writer = writer;
@@ -25,31 +29,79 @@ public class BarberShop extends Thread {
     }
 
     public synchronized void receivedClient(ArrayList<Client> clients) {
-        int amountOfClientsWhoEnteredAQueue = 0;
         try {
-            if (queue.size() == maxQueueSize){
+            if (queue.size() == maxQueueSize) {
                 writer.append("There is no spaces in the queue." + clients.size() + " left without waiting\n");
                 System.out.println("There is no spaces in the queue." + clients.size() + " left without waiting");
-                amountOfClientWhoDoesntHavePlace += clients.size();
+                amountOfClientsWhoDoesntHavePlace += clients.size();
                 clients.clear();
                 wait();
             }
             for (int i = clients.size() - 1; i >= 0; i--) {
-                if (queue.size() < maxQueueSize){
+                if (queue.size() < maxQueueSize) {
                     queue.add(clients.remove(0));
-                    
-                    amountOfClientsWhoEnteredAQueue += 1;
+                    amountOfClientsWhoEnteredAQueue++;
                 } else {
-                    amountOfClientWhoDoesntHavePlace += clients.size();
+                    amountOfClientsWhoDoesntHavePlace += clients.size();
                     clients.clear();
                     wait();
                 }
             }
             writer.append("Amount of clients who entered a queue : " + amountOfClientsWhoEnteredAQueue +
-                    "\nAmount of clients who doesn't enetered a queue : " + amountOfClientWhoDoesntHavePlace + "\n");
+                    "\nAmount of clients who doesn't entered a queue : " + amountOfClientsWhoDoesntHavePlace + "\n");
             System.out.println("Amount of clients who entered a queue : " + amountOfClientsWhoEnteredAQueue +
-                    "\nAmount of clients who doesn't enetered a queue : " + amountOfClientWhoDoesntHavePlace);
-        } catch (IOException | InterruptedException e){
+                    "\nAmount of clients who doesn't entered a queue : " + amountOfClientsWhoDoesntHavePlace);
+        } catch (IOException | InterruptedException e) {
+        }
+    }
+    public class Barber extends Thread {
+        private int barberID;
+        private int cuttingTimeFrom;
+        private int cuttingTimeTo;
+
+        public Barber(int barberID){
+            this.barberID = barberID;
+        }
+        @Override
+        public void run(){
+            Random r = new Random();
+            while (true){
+                try {
+                    int cuttingTime = r.nextInt(cuttingTimeTo - cuttingTimeFrom) + cuttingTimeFrom;
+                    Client client = queue.remove(0);
+                    generalWaitingTime += System.currentTimeMillis() - client.getEnteringTime();
+                    writer.append(queue.get(0) + " barber took a client from the queue\n");
+                    System.out.println(queue.get(0) + " barber took a client from the queue");
+                    sleep(cuttingTime);
+                    amountOfClientsWhoWasCut++;
+                    generalCuttingTime += cuttingTime;
+                    writer.append("Client was cut");
+                    System.out.println("Client was cut");
+                } catch (InterruptedException | IOException e){
+                }
+            }
+        }
+    }
+
+    public class QueueMonitoring extends Thread {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    for (Client client : queue){
+                        if (client.getEnteringTime() * 1000 >= 4){
+                            generalWaitingTime += System.currentTimeMillis() - client.getEnteringTime();
+                            queue.remove(client);
+                            amountOfClientsWhoWaitedButWasNotCut++;
+                            writer.append(client + " waiting for : " + client.getEnteringTime() + " and left a queue\n");
+                            System.out.println(client + " waiting for : " + client.getEnteringTime() + " and left a queue");
+                        }
+                    }
+                    sleep(4000);
+                } catch (InterruptedException | IOException e) {
+                }
+            }
         }
     }
 }
+

@@ -2,7 +2,7 @@ package multithreading.synchonized.waifNotify.barberShop;
 
 public class Client {
     private int id;
-    private long enteringTime;
+    private long enteringTime = System.currentTimeMillis();
     public Client(int id){
         this.id = id;
     }
@@ -10,8 +10,8 @@ public class Client {
     public String toString(){
         return "ID : " + id;
     }
-    public void setEnteringTime(long enteringTime){
-        this.enteringTime = enteringTime;
+    public long getEnteringTime(){
+        return enteringTime;
     }
     @Override
     public boolean equals(Object object){
