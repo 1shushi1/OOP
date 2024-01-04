@@ -1,0 +1,306 @@
+Car : 
+Brand : Skoda
+Serial number : 64 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 40 was produced and put to parking 
+Truck loaded a car with brand : BMW and serial number : 40
+Car : 
+Brand : Mercedes
+Serial number : 29 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 16 was produced and put to parking 
+Truck loaded a car with brand : Skoda and serial number : 64
+Car : 
+Brand : Skoda
+Serial number : 29 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 70 was produced and put to parking 
+Truck loaded a car with brand : Mercedes and serial number : 29
+Truck loaded a car with brand : BMW and serial number : 16
+Truck loaded a car with brand : Mercedes and serial number : 70
+Car : 
+Brand : BMW
+Serial number : 91 was produced and put to parking 
+Truck loaded a car with brand : Skoda and serial number : 29
+Car : 
+Brand : Skoda
+Serial number : 82 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 28 was produced and put to parking 
+Truck loaded a car with brand : BMW and serial number : 91
+Truck loaded a car with brand : Mercedes and serial number : 28
+Car : 
+Brand : Skoda
+Serial number : 65 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 14 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 43 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 38 was produced and put to parking 
+Car : 
+Brand : Skoda
+Serial number : 78 was produced and put to parking 
+Car : 
+Brand : Skoda
+Serial number : 79 was produced and put to parking 
+Truck was loaded and now is going to the ship
+
+Brand : BMW
+Serial number : 40 was put to the ship
+
+Brand : Skoda
+Serial number : 64 was put to the ship
+
+Brand : Mercedes
+Serial number : 29 was put to the ship
+
+Brand : BMW
+Serial number : 16 was put to the ship
+
+Brand : Mercedes
+Serial number : 70 was put to the ship
+Car : 
+Brand : Skoda
+Serial number : 29 was put to the trash parking
+
+Brand : BMW
+Serial number : 91 was put to the ship
+
+Brand : Mercedes
+Serial number : 28 was put to the ship
+Truck is coming back from the ship
+Truck loaded a car with brand : Mercedes and serial number : 14
+Truck loaded a car with brand : BMW and serial number : 43
+Truck loaded a car with brand : BMW and serial number : 38
+Car : 
+Brand : Mercedes
+Serial number : 34 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 67 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 54 was produced and put to parking 
+Truck loaded a car with brand : Skoda and serial number : 82
+Truck loaded a car with brand : Skoda and serial number : 65
+Truck loaded a car with brand : Skoda and serial number : 78
+Truck loaded a car with brand : Skoda and serial number : 79
+Car : 
+Brand : Skoda
+Serial number : 22 was produced and put to parking 
+Car : 
+Brand : Skoda
+Serial number : 97 was produced and put to parking 
+Truck loaded a car with brand : Mercedes and serial number : 34
+Requested amount was smaller
+Car : 
+Brand : BMW
+Serial number : 99 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 52 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 46 was produced and put to parking 
+Car : 
+Brand : Skoda
+Serial number : 27 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 52 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 93 was produced and put to parking 
+Car : 
+Brand : Skoda
+Serial number : 98 was produced and put to parking 
+Truck was loaded and now is going to the ship
+
+Brand : Mercedes
+Serial number : 14 was put to the ship
+
+Brand : BMW
+Serial number : 43 was put to the ship
+
+Brand : BMW
+Serial number : 38 was put to the ship
+
+Brand : Skoda
+Serial number : 82 was put to the ship
+
+Brand : Skoda
+Serial number : 65 was put to the ship
+
+Brand : Skoda
+Serial number : 78 was put to the ship
+
+Brand : Skoda
+Serial number : 79 was put to the ship
+
+Brand : Mercedes
+Serial number : 34 was put to the ship
+Truck is coming back from the ship
+Car : 
+Brand : Mercedes
+Serial number : 1 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 44 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 20 was produced and put to parking 
+Truck loaded a car with brand : BMW and serial number : 67
+Requested amount was smaller
+Truck loaded a car with brand : Mercedes and serial number : 54
+Requested amount was smaller
+Truck loaded a car with brand : BMW and serial number : 99
+Requested amount was smaller
+Truck loaded a car with brand : Mercedes and serial number : 52
+Requested amount was smaller
+Truck loaded a car with brand : BMW and serial number : 46
+Requested amount was smaller
+Truck loaded a car with brand : Mercedes and serial number : 52
+Requested amount was smaller
+Truck loaded a car with brand : BMW and serial number : 93
+Requested amount was smaller
+Truck loaded a car with brand : Mercedes and serial number : 1
+Requested amount was smaller
+Car : 
+Brand : Mercedes
+Serial number : 75 was produced and put to parking 
+Truck was loaded and now is going to the ship
+
+Brand : BMW
+Serial number : 67 was put to the ship
+
+Brand : Mercedes
+Serial number : 54 was put to the ship
+
+Brand : BMW
+Serial number : 99 was put to the ship
+
+Brand : Mercedes
+Serial number : 52 was put to the ship
+
+Brand : BMW
+Serial number : 46 was put to the ship
+Ship was towed by the tow boat
+
+Brand : Mercedes
+Serial number : 52 was put to the ship
+
+Brand : BMW
+Serial number : 93 was put to the ship
+
+Brand : Mercedes
+Serial number : 1 was put to the ship
+Truck is coming back from the ship
+Truck loaded a car with brand : BMW and serial number : 44
+Truck loaded a car with brand : BMW and serial number : 20
+Truck loaded a car with brand : Mercedes and serial number : 75
+Car : 
+Brand : BMW
+Serial number : 24 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 74 was produced and put to parking 
+Truck loaded a car with brand : Skoda and serial number : 22
+Truck loaded a car with brand : Skoda and serial number : 97
+Truck loaded a car with brand : Skoda and serial number : 27
+Truck loaded a car with brand : Skoda and serial number : 98
+Car : 
+Brand : Skoda
+Serial number : 56 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 96 was produced and put to parking 
+Truck loaded a car with brand : BMW and serial number : 24
+Requested amount was smaller
+Car : 
+Brand : Skoda
+Serial number : 49 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 79 was produced and put to parking 
+Car : 
+Brand : Skoda
+Serial number : 5 was produced and put to parking 
+Car : 
+Brand : Skoda
+Serial number : 36 was produced and put to parking 
+Truck was loaded and now is going to the ship
+
+Brand : BMW
+Serial number : 44 was put to the ship
+
+Brand : BMW
+Serial number : 20 was put to the ship
+
+Brand : Mercedes
+Serial number : 75 was put to the ship
+
+Brand : Skoda
+Serial number : 22 was put to the ship
+
+Brand : Skoda
+Serial number : 97 was put to the ship
+
+Brand : Skoda
+Serial number : 27 was put to the ship
+
+Brand : Skoda
+Serial number : 98 was put to the ship
+
+Brand : BMW
+Serial number : 24 was put to the ship
+Truck is coming back from the ship
+Truck loaded a car with brand : Mercedes and serial number : 74
+Truck loaded a car with brand : Mercedes and serial number : 96
+Truck loaded a car with brand : BMW and serial number : 79
+Car : 
+Brand : Mercedes
+Serial number : 64 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 33 was produced and put to parking 
+Truck loaded a car with brand : Skoda and serial number : 56
+Truck loaded a car with brand : Skoda and serial number : 49
+Truck loaded a car with brand : Skoda and serial number : 5
+Truck loaded a car with brand : Skoda and serial number : 36
+Car : 
+Brand : Skoda
+Serial number : 10 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 52 was produced and put to parking 
+Truck loaded a car with brand : Mercedes and serial number : 64
+Requested amount was smaller
+Car : 
+Brand : BMW
+Serial number : 24 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 19 was produced and put to parking 
+Car : 
+Brand : Skoda
+Serial number : 50 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 72 was produced and put to parking 
+Car : 
+Brand : Skoda
+Serial number : 54 was produced and put to parking 
+Car : 
+Brand : BMW
+Serial number : 60 was produced and put to parking 
+Car : 
+Brand : Mercedes
+Serial number : 29 was produced and put to parking 

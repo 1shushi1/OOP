@@ -1,0 +1,31 @@
+Title : Lego Police Constructor
+Price : 243.0
+Brand : Lego
+Fitchers : 
+Window - 5
+Panel - 5
+Wheel - 4
+Roof - 1
+Bricks - 250
+Age from : 7
+Material : Plastic
+Title : Barbie Doll
+Price : 153.0
+Brand : Barbie
+Fitchers : 
+Dress - 2
+Hair Brush - 1
+Shoes - 2
+Doll - 1
+Age from : 3
+Material : Plastic
+Title : Toy Gun
+Price : 123.0
+Brand : NERF
+Fitchers : 
+Scope - 2
+Holder - 1
+Soft Bullets - 20
+Nerf Gun - 1
+Age from : 9
+Material : Plastic
