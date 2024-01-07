@@ -28,19 +28,19 @@ public class Main {
             writer.append("Amount of generated clients : " + ClientGenerator.getID() +
                     "\nAmount of clients who didn't have enough places in the queue : " + barberShop.getAmountOfClientsWhoDoesntHavePlace() +
                     "\nAmount of clients who waited more than 4 seconds and leave without cutting : " + barberShop.getAmountOfClientsWhoWaitedButWasNotCut() +
-                    "\nAverage cutting time : " + barberShop.getGeneralCuttingTime() / barberShop.getAmountOfClientsWhoWasCut() +
+                    "\nAverage cutting time : " + (barberShop.getGeneralCuttingTime() * 1.0/ barberShop.getAmountOfClientsWhoWasCut()) +
                     "\nAmount of clients who was cut : " + barberShop.getAmountOfClientsWhoWasCut() +
                     "\nAmount of clients who was still cutting after program finished : " + barberShop.findAmountOfClientsWhoWasStillCuttingAfterProgFinished() +
-                    "\nAverage waiting time in a queue : " + barberShop.getGeneralWaitingTime() / (barberShop.getAmountOfClientsWhoWaitedButWasNotCut()) + barberShop.getAmountOfClientsWhoWasCut()
-                    + barberShop.getAmountOfClientsWhoWasStillCuttingAfterProgFinished() + "\n");
+                    "\nAverage waiting time in a queue : " + (barberShop.getGeneralWaitingTime() / (barberShop.getAmountOfClientsWhoWaitedButWasNotCut()) + barberShop.getAmountOfClientsWhoWasCut()
+                    + barberShop.getAmountOfClientsWhoWasStillCuttingAfterProgFinished())/1000.0 + "\n");
             System.out.println("Amount of generated clients : " + ClientGenerator.getID() +
                     "\nAmount of clients who didn't have enough places in the queue : " + barberShop.getAmountOfClientsWhoDoesntHavePlace() +
                     "\nAmount of clients who waited more than 4 seconds and leave without cutting : " + barberShop.getAmountOfClientsWhoWaitedButWasNotCut() +
-                    "\nAverage cutting time : " + barberShop.getGeneralCuttingTime() / barberShop.getAmountOfClientsWhoWasCut() +
+                    "\nAverage cutting time : " + (barberShop.getGeneralCuttingTime() * 1.0/ barberShop.getAmountOfClientsWhoWasCut()) +
                     "\nAmount of clients who was cut : " + barberShop.getAmountOfClientsWhoWasCut() +
                     "\nAmount of clients who was still cutting after program finished : " + barberShop.findAmountOfClientsWhoWasStillCuttingAfterProgFinished() +
-                    "\nAverage waiting time in a queue : " + barberShop.getGeneralWaitingTime() / (barberShop.getAmountOfClientsWhoWaitedButWasNotCut()) + barberShop.getAmountOfClientsWhoWasCut()
-                    + barberShop.getAmountOfClientsWhoWasStillCuttingAfterProgFinished());
+                    "\nAverage waiting time in a queue : " + (barberShop.getGeneralWaitingTime() / (barberShop.getAmountOfClientsWhoWaitedButWasNotCut()) + barberShop.getAmountOfClientsWhoWasCut()
+                    + barberShop.getAmountOfClientsWhoWasStillCuttingAfterProgFinished())/1000.0);
         } catch (IOException | InterruptedException e) {
         }
     }

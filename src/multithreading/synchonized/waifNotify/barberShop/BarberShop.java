@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class BarberShop extends Thread {
+public class BarberShop {
     private ArrayList<Barber> barbers = new ArrayList<>();
     private ArrayList<Client> queue = new ArrayList<>();
     private BufferedWriter writer;
     private int maxQueueSize;
-    private int cuttingTimeFrom;
-    private int cuttingTimeTo;
-    private int amountOfClientsWhoDoesntHavePlace; //clients which was generated, put into an array list, but they hadn't had free space at the queue
+    private int amountOfClientsWhoDoesntHavePlace;
     private int amountOfClientsWhoWaitedButWasNotCut;
     private int amountOfClientsWhoWasCut;
     private int amountOfClientsWhoWasStillCuttingAfterProgFinished;
@@ -35,7 +33,6 @@ public class BarberShop extends Thread {
     }
 
     public synchronized void receivedClient(ArrayList<Client> clients) {
-        int amountOfClientsWhoEnteredAQueue = 0;
         try {
             if (queue.size() == maxQueueSize) {
                 writer.append("There is no spaces in the queue." + clients.size() + " left without waiting\n");
@@ -44,20 +41,24 @@ public class BarberShop extends Thread {
                 clients.clear();
                 wait();
             }
+            int amountOfFreeSpacesInAQueue = maxQueueSize - queue.size();
+            int clientsToLeave = clients.size() - amountOfFreeSpacesInAQueue;
+            if (clientsToLeave >= 0){
+                amountOfClientsWhoDoesntHavePlace += clientsToLeave;
+                System.out.println("Clients to leave : " + clientsToLeave);
+            }
             for (int i = clients.size() - 1; i >= 0; i--) {
                 if (queue.size() < maxQueueSize) {
-                    queue.add(clients.remove(0));
-                    amountOfClientsWhoEnteredAQueue++;
+                    Client client = clients.remove(0);
+                    queue.add(client);
+                    System.out.println("Client with id : " + client.getId() + " entered a queue");
+                    writer.append("Client with id : " + client.getId() + " entered a queue\n");
                 } else {
-                    amountOfClientsWhoDoesntHavePlace += clients.size();
                     clients.clear();
                     wait();
                 }
             }
-            writer.append("Amount of clients who entered a queue : " + amountOfClientsWhoEnteredAQueue +
-                    "\nAmount of clients who doesn't entered a queue : " + amountOfClientsWhoDoesntHavePlace + "\n");
-            System.out.println("Amount of clients who entered a queue : " + amountOfClientsWhoEnteredAQueue +
-                    "\nAmount of clients who doesn't entered a queue : " + amountOfClientsWhoDoesntHavePlace);
+            notifyAll();
         } catch (IOException | InterruptedException e) {
         }
     }
@@ -81,10 +82,10 @@ public class BarberShop extends Thread {
                     int cuttingTime = r.nextInt(cuttingTimeTo - cuttingTimeFrom) + cuttingTimeFrom;
                     Client client = takeClient();
                     generalWaitingTime += System.currentTimeMillis() - client.getEnteringTime();
-                    writer.append(queue.get(0) + " barber took a client from the queue\n");
-                    System.out.println(queue.get(0) + " barber took a client from the queue");
+                    writer.append(client.getId() + " barber took a client from the queue\n");
+                    System.out.println(client.getId() + " barber took a client from the queue");
                     amountOfClientsWhoEnteredBarber++;
-                    sleep(cuttingTime);
+                    sleep(cuttingTime * 1000);
                     amountOfClientsWhoWasCut++;
                     generalCuttingTime += cuttingTime;
                     writer.append("Client was cut");
@@ -143,9 +144,9 @@ public class BarberShop extends Thread {
                 wait();
             }
             client = queue.get(0);
+            notifyAll();
         } catch (InterruptedException e) {
         }
-        notifyAll();
         return client;
     }
 
@@ -154,18 +155,20 @@ public class BarberShop extends Thread {
             if (queue.isEmpty()) {
                 wait();
             }
-            for (Client client : queue) {
-                if (client.getEnteringTime() * 1000 >= 4) {
+            for (int i = queue.size() - 1; i >= 0; i--) {
+                Client client = queue.get(i);
+                if (client.getEnteringTime() >= 4 * 1000) {
                     generalWaitingTime += System.currentTimeMillis() - client.getEnteringTime();
-                    queue.remove(client);
-                    amountOfClientsWhoWaitedButWasNotCut++;
-                    writer.append(client + " waiting for : " + client.getEnteringTime() + " and left a queue\n");
-                    System.out.println(client + " waiting for : " + client.getEnteringTime() + " and left a queue");
+                    if (queue.remove(i) != null){
+                        amountOfClientsWhoWaitedButWasNotCut++;
+                    }
+                    writer.append(client + " waiting for : " + (System.currentTimeMillis() - client.getEnteringTime()) / 1000.0 + " and left a queue\n");
+                    System.out.println(client + " waiting for : " + (System.currentTimeMillis() - client.getEnteringTime()) / 1000.0 + " and left a queue");
                 }
             }
+            notifyAll();
         } catch (InterruptedException | IOException e) {
         }
-        notifyAll();
     }
 }
 

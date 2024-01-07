@@ -27,4 +27,7 @@ public class Client {
         Client client = (Client) object;
         return client.id == id;
     }
+    public int getId(){
+        return id;
+    }
 }
