@@ -17,6 +17,9 @@ public class ClientGenerator extends Thread {
         this.amountFrom = amountFrom;
         this.amountTo = amountTo;
     }
+    public static int getID(){
+        return id;
+    }
     @Override
     public void run(){
         ArrayList<Client> clients = new ArrayList<>();
