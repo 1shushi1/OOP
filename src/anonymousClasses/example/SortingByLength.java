@@ -1,4 +1,4 @@
-package anonymousClasses;
+package anonymousClasses.example;
 
 import java.util.Comparator;
 

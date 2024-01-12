@@ -1,4 +1,4 @@
-package anonymousClasses;
+package lambdas;
 
 public interface Action {
     void execute();

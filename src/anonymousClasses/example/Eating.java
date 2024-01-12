@@ -1,4 +1,4 @@
-package anonymousClasses;
+package anonymousClasses.example;
 
 public class Eating implements Action{
     @Override
