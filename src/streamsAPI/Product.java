@@ -1,6 +1,8 @@
 package streamsAPI;
 
-public class Product {
+import java.util.Comparator;
+
+public class Product  {
     private String name;
     private double price;
     private int amount;
@@ -11,6 +13,12 @@ public class Product {
     }
     @Override
     public String toString(){
-        return "Name : " + name + "| Price : " + price + "| Amount : " + amount;
+        return "Name : " + name + " | Price : " + price + " | Amount : " + amount + " | Total product price : " + getTotalPrice();
+    }
+    public double getTotalPrice(){
+        return price * amount;
+    }
+    public double getPrice(){
+        return price;
     }
 }

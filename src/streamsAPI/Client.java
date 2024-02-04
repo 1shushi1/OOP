@@ -14,4 +14,28 @@ public class Client {
     public String toString(){
         return "Name : " + firstName + "| Surname : " + lastName + "| Address : " + address + "| Phone number : " + phoneNumber;
     }
+    public String getFirstName(){
+        return firstName;
+    }
+    @Override
+    public boolean equals(Object o){
+        if (o == this){
+            return true;
+        }
+        if (o == null){
+            return false;
+        }
+        if (!(o instanceof Client)){
+            return false;
+        }
+        Client client = (Client) o;
+        return client.firstName.equals(firstName) && client.lastName.equals(lastName);
+    }
+    @Override
+    public int hashCode(){
+        int hashCode = 13;
+        hashCode += 13 + firstName.hashCode();
+        hashCode += 13 + lastName.hashCode();
+        return hashCode;
+    }
 }
