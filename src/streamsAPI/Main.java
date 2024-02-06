@@ -1,5 +1,7 @@
 package streamsAPI;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -64,11 +66,13 @@ public class Main {
         Manager manager6 = new Manager("Sophia", "Brown", "555-5566");
         Manager manager7 = new Manager("Michael", "Miller", "555-7788");
 
+        Manager manager8 = new Manager("Bob", "Johnson", "555-9101");
+
         Order order1 = new Order(1, new Date(2023-1900, 1, 13), client1, manager1, products1);
         Order order2 = new Order(2, new Date(2020-1900, 11, 1), client4, manager6, products2);
         Order order3 = new Order(3, new Date(2021-1900, 6, 23), client3, manager2, products3);
         Order order4 = new Order(4, new Date(2022-1900, 8, 19), client8, manager3, products4);
-        Order order5 = new Order(5, new Date(2024-1900, 2, 8), client9, manager3, products5);
+        Order order5 = new Order(5, new Date(2024-1900, 2, 8), client9, manager8, products5);
         Order order6 = new Order(6, new Date(2024-1900, 7, 12), client9, manager4, products6);
         Order order7 = new Order(7, new Date(2024-1900, 4, 19), client9, manager4, products7);
         Order order8 = new Order(7, new Date(2024-1900, 4, 19), client9, manager4, products7);
@@ -126,8 +130,27 @@ public class Main {
 //        System.out.println(order);
 
         //checker how stream find the most expensive product within all orders
-        Product product = OrderController.theMostExpensiveProd(orders);
-        System.out.println(product);
+//        Product product = OrderController.theMostExpensiveProd(orders);
+//        System.out.println(product);
 
+        //checker how stream find the cheapest order on a particular date period and return client info
+//        Client client = OrderController.theCheapestOrderByDate(orders,new Date(2020-1900, 11, 1),new Date(2024-1900, 7, 25) );
+//        System.out.println(client);
+
+        //checker how stream find all managers within orders
+//        List<Manager> managers = OrderController.listOfManagers(orders);
+//        managers.forEach(m -> System.out.println(m));
+
+        //checker how stream find return total sum of all orders using reduce
+//        Double sum = OrderController.totalPriceReduce(orders);
+//        System.out.println(Math.round(sum * 1000)/1000.0);
+
+        //checker of how stream sorting client alphabetically
+//        List<Client> clientsList = OrderController.sortedAlpClients(orders);
+//        clientsList.forEach(c -> System.out.println(c));
+
+        //checker of how stream shows all products that company sell
+        List<Product> productsList = OrderController.listOfProduct(orders);
+        productsList.forEach(e -> System.out.println(e));
     }
 }

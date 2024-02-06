@@ -1,6 +1,6 @@
 package streamsAPI;
 
-public class Client {
+public class Client implements Comparable<Client>{
     private String firstName;
     private String lastName;
     private String address;
@@ -37,5 +37,9 @@ public class Client {
         hashCode += 13 + firstName.hashCode();
         hashCode += 13 + lastName.hashCode();
         return hashCode;
+    }
+    @Override
+    public int compareTo(Client client){
+        return firstName.compareTo(client.firstName);
     }
 }

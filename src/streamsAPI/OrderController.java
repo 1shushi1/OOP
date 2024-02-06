@@ -63,8 +63,45 @@ public class OrderController {
     }
     //знайти та повернути найдорожчий товар
     public static Product theMostExpensiveProd(List<Order> orders){
+        return orders.stream().max(((o1, o2) -> Double.compare(o1.theMostExpProduct().getPrice(), o2.theMostExpProduct().getPrice()))).get().theMostExpProduct();
+    }
+    //приймаэмо замовлення та повертаємо клієнта, що зробив найдешевше замовлення починаючи з дати, що передається
+    public static Client theCheapestOrderByDate(List<Order> orders, Date dateFrom, Date dateTo){
         return orders.stream()
-                .map(order -> order.theMostExpProduct(order))
-                .reduce((p1, p2) -> p1.getPrice() > p2.getPrice() ? p1 : p2).get();
+                .distinct()
+                .filter(o -> o.getDate().before(dateTo) && o.getDate().after(dateFrom))
+                .min((o1, o2) -> Double.compare(o1.totalPrice(), o2.totalPrice()))
+                .get()
+                .getClient();
+    }
+
+    //приймаємо замовлення та повертаємо список менеджерів, що працюють на фірмі
+    public static List<Manager> listOfManagers(List<Order> orders){
+        return orders.stream()
+                .map(o -> o.getManager())
+                .distinct()
+                .toList();
+    }
+
+    //приймаємо замовлення та повертаємо загальну суму замовлень використовуючи метод редюс
+    public static Double totalPriceReduce(List<Order> orders){
+        return orders.stream()
+                .distinct()
+                .map(o -> o.totalPrice())
+                .reduce((o1, o2) -> Double.sum(o1, o2)).get();
+    }
+    //приймаємо замовлення на повертаємо відсортовані по абетці клієнтів
+    public static List<Client> sortedAlpClients(List<Order> orders){
+        return orders.stream()
+                .map(o -> o.getClient())
+                .distinct()
+                .sorted().toList();
+    }
+    //повернути список товарів що продає фірма
+    public static List<Product> listOfProduct(List<Order> orders){
+        return orders.stream()
+                .flatMap(o -> o.getProducts().stream())
+                .distinct()
+                .toList();
     }
 }

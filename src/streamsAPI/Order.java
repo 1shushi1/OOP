@@ -92,8 +92,8 @@ public class Order implements Comparable<Order>{
         //we can change places, example : order.date.compareTo(date);
         return -date.compareTo(order.date);
     }
-    public Product theMostExpProduct(Order order){
-        return order.getProducts().stream().max((p1, p2) -> Double.compare(p1.getPrice(), p2.getPrice())).get();
+    public Product theMostExpProduct(){
+        return products.stream().max((p1, p2) -> Double.compare(p1.getPrice(), p2.getPrice())).get();
     }
     public List<Product> getProducts(){
         return products;

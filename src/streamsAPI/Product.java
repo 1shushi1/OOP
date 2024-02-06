@@ -2,7 +2,7 @@ package streamsAPI;
 
 import java.util.Comparator;
 
-public class Product  {
+public class Product {
     private String name;
     private double price;
     private int amount;
@@ -20,5 +20,25 @@ public class Product  {
     }
     public double getPrice(){
         return price;
+    }
+    @Override
+    public boolean equals(Object o){
+        if (o == this){
+            return true;
+        }
+        if (o == null){
+            return false;
+        }
+        if (!(o instanceof Product)){
+            return false;
+        }
+        Product product = (Product) o;
+        return product.name.equals(name) && product.price == price;
+    }
+    @Override
+    public int hashCode(){
+        int hashCode = 13;
+        hashCode += 13 + name.hashCode();
+        return hashCode += 13 + Double.hashCode(price);
     }
 }
