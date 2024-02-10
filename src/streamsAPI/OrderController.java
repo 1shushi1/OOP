@@ -104,4 +104,53 @@ public class OrderController {
                 .distinct()
                 .toList();
     }
+    //знайти найдешевший товар що продавала фірма за рік
+    public static Product theCheapestProduct(List<Order> orders){
+        return orders.stream()
+                .distinct()
+                .flatMap(o -> o.getProducts().stream())
+                .min((p1, p2) -> Double.compare(p1.getPrice(), p2.getPrice()))
+                .get();
+    }
+    public static List<Product> sortedProductsByPriceASC(List<Order> orders){
+        return orders.stream()
+                .distinct()
+                .flatMap(o -> o.getProducts().stream())
+                .sorted()
+                .toList();
+    }
+
+    //приймаємо замовлення та список товарів та повертаємо загальну вартість замовлень де є такі товари
+    public static double [] totalPriceOfOrdByPartGoods(List<Order> orders, List<Product> products){
+        double [] sum = new double[1];
+         orders.stream()
+                .distinct()
+                .filter(o -> o.checkIfOrderContPartProd(products))
+                 .forEach(o -> sum[0] += o.totalPrice());
+         return sum;
+    }
+    //All orders total price
+    public static List<Order> totalPrice(List<Order> orders){
+        return orders.stream().distinct().toList();
+    }
+    //приймаємо замовлення та товари та повертаємо загальну вартість тільки товарів в замовлень що є у списку
+    public static double priceOfPartProduct(List<Order> orders, List<Product> products){
+//        double [] sum = new double[1];
+//        orders.stream().distinct().flatMap(o -> o.getProducts().stream()).filter(p -> products.contains(p)).forEach(p -> sum[0] += p.getPrice());
+//        return sum;
+        return orders.stream().distinct().flatMap(o -> o.getProducts().stream()).filter(p -> products.contains(p)).map(p -> p.getPrice()).reduce((p1, p2) -> Double.sum(p1, p2)).get();
+    }
+    //знаходимо кількість замовлень зроблених кожним клієнтом
+    public static HashMap<Client, Integer> amountOfOrdersMadyByClient(List<Order> orders){
+        HashMap<Client, Integer> hashMap = new HashMap();
+        orders.stream().distinct().forEach(o -> {
+            if (!hashMap.containsKey(o.getClient())) {
+                hashMap.put(o.getClient(), 1);
+            } else {
+                int amountOfOrders = hashMap.get(o.getClient());
+                hashMap.replace(o.getClient(), amountOfOrders + 1);
+            }
+        });
+        return hashMap;
+    }
 }

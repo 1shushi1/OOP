@@ -2,10 +2,7 @@ package streamsAPI;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -150,7 +147,37 @@ public class Main {
 //        clientsList.forEach(c -> System.out.println(c));
 
         //checker of how stream shows all products that company sell
-        List<Product> productsList = OrderController.listOfProduct(orders);
-        productsList.forEach(e -> System.out.println(e));
+//        List<Product> productsList = OrderController.listOfProduct(orders);
+//        productsList.forEach(e -> System.out.println(e));
+
+        //checker list of products ASC by price
+//        List<Product> products = OrderController.sortedProductsByPriceASC(orders);
+//        products.forEach(p -> System.out.println(p));
+
+//        System.out.println("______________________");
+
+        //checker of how stream find the cheapest product that was selling
+//        Product product = OrderController.theCheapestProduct(orders);
+//        System.out.println(product);
+
+        //check totalPrices
+//        List<Order> orderList = OrderController.totalPrice(orders);
+//        orderList.forEach(e -> System.out.println(e));
+
+        //checker of how stream return the total price of orders which have particular products that was pass as a List<Product>
+        List<Product> particularProducts = new ArrayList<>();
+        Collections.addAll(particularProducts, new Product("Carpet", 19.99, 3), new Product("Wireless Earbuds", 79.99, 5));
+//        double [] sum = OrderController.totalPriceOfOrdByPartGoods(orders, particularProducts);
+//        System.out.println(Arrays.toString(sum));
+
+        //checker of how stream summing particular products in order
+//        double sum = OrderController.priceOfPartProduct(orders, particularProducts);
+//        System.out.println(Math.round(sum * 1000)/1000.0);
+
+        //checker of how stream counts clients order amounts
+        HashMap<Client, Integer> amountOfOrdersMadeByClient = OrderController.amountOfOrdersMadyByClient(orders);
+        for (Client client : amountOfOrdersMadeByClient.keySet()) {
+            System.out.println(client + " - " + amountOfOrdersMadeByClient.get(client));
+        }
     }
 }
