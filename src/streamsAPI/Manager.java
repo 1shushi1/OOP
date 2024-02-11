@@ -10,7 +10,7 @@ public class Manager {
         this.phoneNumber = phoneNumber;
     }
     public String toString(){
-        return "Name : " + firstName + "| Surname : " + lastName + "| Phone number : " + phoneNumber;
+        return "Name : " + firstName + " | Surname : " + lastName + " | Phone number : " + phoneNumber;
     }
     @Override
     public boolean equals(Object o){

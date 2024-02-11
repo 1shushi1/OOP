@@ -2,10 +2,7 @@ package streamsAPI;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -150,7 +147,27 @@ public class Main {
 //        clientsList.forEach(c -> System.out.println(c));
 
         //checker of how stream shows all products that company sell
-        List<Product> productsList = OrderController.listOfProduct(orders);
-        productsList.forEach(e -> System.out.println(e));
+//        List<Product> productsList = OrderController.listOfProduct(orders);
+//        productsList.forEach(e -> System.out.println(e));
+
+        //checker of how stream makes a table for manager and their sales
+//        HashMap<Manager, Double> earnedMoney = OrderController.moneyEachManagerMadeForAllOrders(orders);
+//        for (Manager manager : earnedMoney.keySet()) {
+//            System.out.println(manager + " - " + earnedMoney.get(manager));
+//        }
+
+        //checker of how stream finds all orders for each client (Client - Orders)
+//        HashMap<Client, List<Order>> clientOrders = OrderController.allClientOrders(orders);
+//        for (Map.Entry<Client, List<Order>> entry : clientOrders.entrySet()){
+//            Client client = entry.getKey();
+//            List<Order> ordersList = entry.getValue();
+//            for (Order order : ordersList){
+//                System.out.println(client + " - " + order);
+//            }
+//        }
+
+        //checker of how stream finds manager with the most sold orders
+        Manager manager = OrderController.managerWhichMadeTheMostOrders(orders);
+        System.out.println(manager);
     }
 }

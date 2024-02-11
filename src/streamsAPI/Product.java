@@ -21,6 +21,9 @@ public class Product {
     public double getPrice(){
         return price;
     }
+    public int getAmount(){
+        return amount;
+    }
     @Override
     public boolean equals(Object o){
         if (o == this){
