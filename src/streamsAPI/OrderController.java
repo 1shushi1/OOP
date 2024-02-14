@@ -104,55 +104,53 @@ public class OrderController {
                 .distinct()
                 .toList();
     }
-    //приймаэмо замовлення та визначаємо зароблені кожним менеджером гроші
-    public static HashMap<Manager, Double> moneyEachManagerMadeForAllOrders(List<Order> orders){
-        HashMap<Manager, Double> managerDoubleMap = new HashMap<>();
-        orders.stream().distinct().forEach(o -> {
-            if (!managerDoubleMap.containsKey(o.getManager())){
-                managerDoubleMap.put(o.getManager(), o.totalPrice());
-            } else {
-                managerDoubleMap.put(o.getManager(), managerDoubleMap.get(o.getManager()) + o.totalPrice());
-            }
-        });
-        return managerDoubleMap;
+    //знайти найдешевший товар що продавала фірма за рік
+    public static Product theCheapestProduct(List<Order> orders){
+        return orders.stream()
+                .distinct()
+                .flatMap(o -> o.getProducts().stream())
+                .min((p1, p2) -> Double.compare(p1.getPrice(), p2.getPrice()))
+                .get();
     }
-    //переглянути для кожного клієнта його замовлення
-    public static HashMap<Client, List<Order>> allClientOrders (List<Order> orders){
-        HashMap<Client, List<Order>> clientOrderMap = new HashMap<>();
-        orders.stream().distinct().forEach(o -> {
-            if (!clientOrderMap.containsKey(o.getClient())){
-                List<Order> clientOrders = new ArrayList<>();
-                clientOrders.add(o);
-                clientOrderMap.put(o.getClient(), clientOrders);
-            } else {
-                clientOrderMap.get(o.getClient()).add(o);
-            }
-        });
-        return clientOrderMap;
-    }
-    //знайти менеджера що оформив найбыльшу кылькысть замовлень
-    public static Manager managerWhichMadeTheMostOrders(List<Order> orders) {
-        HashMap<Manager, Integer> managerIntegerMap = new HashMap<>();
-        orders.stream().distinct().forEach(o -> {
-            Manager manager = o.getManager();
-            managerIntegerMap.put(manager, managerIntegerMap.getOrDefault(manager, 0) + 1);
-        });
-//        Manager managerWithTheMostSoldOrders = null;
-//        int maxVal = Integer.MIN_VALUE;
-//        for (Manager manager : managerIntegerMap.keySet()) {
-//            Integer managerOrders = managerIntegerMap.get(manager);
-//            if (managerOrders != null && managerOrders > maxVal) {
-//                maxVal = managerOrders;
-//                managerWithTheMostSoldOrders = manager;
-//            }
-//        }
-//        return managerWithTheMostSoldOrders;
-       return managerIntegerMap.entrySet().stream().max((o1, o2) -> Integer.compare(o1.getValue(), o2.getValue())).get().getKey();
-    }
-    //знайти кількість кожного товару що продали
-    public static HashMap<Product, Integer> amountOfSoldProductsTable(List<Order> orders){
-        HashMap<Product, Integer> productIntegerMap = new HashMap<>();
-        orders.stream().
+    public static List<Product> sortedProductsByPriceASC(List<Order> orders){
+        return orders.stream()
+                .distinct()
+                .flatMap(o -> o.getProducts().stream())
+                .sorted()
+                .toList();
     }
 
+    //приймаємо замовлення та список товарів та повертаємо загальну вартість замовлень де є такі товари
+    public static double [] totalPriceOfOrdByPartGoods(List<Order> orders, List<Product> products){
+        double [] sum = new double[1];
+         orders.stream()
+                .distinct()
+                .filter(o -> o.checkIfOrderContPartProd(products))
+                 .forEach(o -> sum[0] += o.totalPrice());
+         return sum;
+    }
+    //All orders total price
+    public static List<Order> totalPrice(List<Order> orders){
+        return orders.stream().distinct().toList();
+    }
+    //приймаємо замовлення та товари та повертаємо загальну вартість тільки товарів в замовлень що є у списку
+    public static double priceOfPartProduct(List<Order> orders, List<Product> products){
+//        double [] sum = new double[1];
+//        orders.stream().distinct().flatMap(o -> o.getProducts().stream()).filter(p -> products.contains(p)).forEach(p -> sum[0] += p.getPrice());
+//        return sum;
+        return orders.stream().distinct().flatMap(o -> o.getProducts().stream()).filter(p -> products.contains(p)).map(p -> p.getPrice()).reduce((p1, p2) -> Double.sum(p1, p2)).get();
+    }
+    //знаходимо кількість замовлень зроблених кожним клієнтом
+    public static HashMap<Client, Integer> amountOfOrdersMadyByClient(List<Order> orders){
+        HashMap<Client, Integer> hashMap = new HashMap();
+        orders.stream().distinct().forEach(o -> {
+            if (!hashMap.containsKey(o.getClient())) {
+                hashMap.put(o.getClient(), 1);
+            } else {
+                int amountOfOrders = hashMap.get(o.getClient());
+                hashMap.replace(o.getClient(), amountOfOrders + 1);
+            }
+        });
+        return hashMap;
+    }
 }

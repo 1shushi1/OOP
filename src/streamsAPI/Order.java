@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Order implements Comparable<Order>{
+public class Order {
     private long orderID;
     private Date date;
     private Client client;
@@ -86,16 +86,21 @@ public class Order implements Comparable<Order>{
         int hashCode = 13;
         return hashCode += 13 + Long.hashCode(orderID);
     }
-    @Override
-    public int compareTo(Order order){
-        //in order to get a desc order we can use - before the statement
-        //we can change places, example : order.date.compareTo(date);
-        return -date.compareTo(order.date);
-    }
+//    @Override
+//    public int compareTo(Order order){
+//        //in order to get a desc order we can use - before the statement
+//        //we can change places, example : order.date.compareTo(date);
+//        return -date.compareTo(order.date);
+//    }
+
     public Product theMostExpProduct(){
         return products.stream().max((p1, p2) -> Double.compare(p1.getPrice(), p2.getPrice())).get();
     }
     public List<Product> getProducts(){
         return products;
     }
+    public boolean checkIfOrderContPartProd (List<Product> particularProducts){
+        return products.stream().anyMatch(product -> particularProducts.contains(product));
+    }
+
 }
