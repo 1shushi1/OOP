@@ -165,8 +165,8 @@ public class Main {
 //        orderList.forEach(e -> System.out.println(e));
 
         //checker of how stream return the total price of orders which have particular products that was pass as a List<Product>
-        List<Product> particularProducts = new ArrayList<>();
-        Collections.addAll(particularProducts, new Product("Carpet", 19.99, 3), new Product("Wireless Earbuds", 79.99, 5));
+//        List<Product> particularProducts = new ArrayList<>();
+//        Collections.addAll(particularProducts, new Product("Carpet", 19.99, 3), new Product("Wireless Earbuds", 79.99, 5));
 //        double [] sum = OrderController.totalPriceOfOrdByPartGoods(orders, particularProducts);
 //        System.out.println(Arrays.toString(sum));
 
@@ -175,9 +175,28 @@ public class Main {
 //        System.out.println(Math.round(sum * 1000)/1000.0);
 
         //checker of how stream counts clients order amounts
-        HashMap<Client, Integer> amountOfOrdersMadeByClient = OrderController.amountOfOrdersMadyByClient(orders);
-        for (Client client : amountOfOrdersMadeByClient.keySet()) {
-            System.out.println(client + " - " + amountOfOrdersMadeByClient.get(client));
-        }
+//        Map<Product, Long> productLongMap = OrderController.amountOfSoldProductsTable(orders);
+//        for (Product product : productLongMap.keySet()){
+//            System.out.println(product + " - " + productLongMap.get(product));
+//        }
+
+//        List<Product> productsList = OrderController.listOfProduct(orders);
+//        productsList.forEach(e -> System.out.println(e));
+
+        //checker of how stream makes a table for manager and their sales
+//        HashMap<Manager, Double> earnedMoney = OrderController.moneyEachManagerMadeForAllOrders(orders);
+//        for (Manager manager : earnedMoney.keySet()) {
+//            System.out.println(manager + " - " + earnedMoney.get(manager));
+//        }
+
+        //checker of how stream finds all orders for each client (Client - Orders)
+//        HashMap<Client, List<Order>> clientOrders = OrderController.allClientOrders(orders);
+//        for (Map.Entry<Client, List<Order>> entry : clientOrders.entrySet()){
+//            Client client = entry.getKey();
+//            List<Order> ordersList = entry.getValue();
+//            for (Order order : ordersList){
+//                System.out.println(client + " - " + order);
+//            }
+//        }
     }
 }
