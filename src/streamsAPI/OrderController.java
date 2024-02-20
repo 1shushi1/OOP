@@ -112,6 +112,7 @@ public class OrderController {
                 .min((p1, p2) -> Double.compare(p1.getPrice(), p2.getPrice()))
                 .get();
     }
+    //sorted products by price asc
     public static List<Product> sortedProductsByPriceASC(List<Order> orders){
         return orders.stream()
                 .distinct()
