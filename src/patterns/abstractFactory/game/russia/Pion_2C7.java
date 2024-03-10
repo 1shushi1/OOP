@@ -10,4 +10,7 @@ public class Pion_2C7 extends Gun {
     public void shout(){
         System.out.println(getClass().getSimpleName() + " launch rockets");
     }
+    public Gun clone(){
+        return new Pion_2C7(calibre, speed);
+    }
 }

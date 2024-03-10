@@ -14,4 +14,8 @@ public class SU27 extends Plane {
     public void manever(){
         System.out.println(getClass().getSimpleName() + " is making manever");
     }
+    @Override
+    public Plane clone(){
+        return new SU27(height, speed, shoutDistance);
+    }
 }

@@ -1,9 +1,9 @@
 package patterns.abstractFactory.game;
 
-public abstract class Tank {
-    private double speed;
-    private double shoutDistance;
-    private double shieldThickness;
+public abstract class Tank implements Cloneable {
+    protected double speed;
+    protected double shoutDistance;
+    protected double shieldThickness;
     public Tank(double speed, double shoutDistance, double shieldThickness){
         this.speed =speed;
         this.shoutDistance = shoutDistance;
@@ -11,4 +11,5 @@ public abstract class Tank {
     }
     public abstract void shout();
     public abstract void accelerate();
+    public abstract Tank clone();
 }

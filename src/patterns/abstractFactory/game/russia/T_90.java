@@ -14,4 +14,9 @@ public class T_90 extends Tank {
     public void accelerate(){
         System.out.println(getClass().getSimpleName() + " is speeding up");
     }
+    @Override
+    public Tank clone(){
+        Tank tank = new T_90(speed, shoutDistance, shieldThickness);
+        return tank;
+    }
 }

@@ -14,4 +14,8 @@ public class F32 extends Plane {
     public void manever(){
         System.out.println(getClass().getSimpleName() + " is making manever");
     }
+    @Override
+    public Plane clone(){
+        return new F18(height, speed, shoutDistance);
+    }
 }

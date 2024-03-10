@@ -14,4 +14,8 @@ public class MIG_29 extends Plane {
     public void manever(){
         System.out.println(getClass().getSimpleName() + " is making manever");
     }
+    @Override
+    public Plane clone(){
+        return new MIG_29(height, speed, shoutDistance);
+    }
 }

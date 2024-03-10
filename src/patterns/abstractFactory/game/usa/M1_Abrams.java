@@ -14,4 +14,8 @@ public class M1_Abrams extends Tank {
     public void accelerate(){
         System.out.println(getClass().getSimpleName() + " is speeding up");
     }
+    @Override
+    public Tank clone(){
+        return new M1_Abrams(speed, shoutDistance, shieldThickness);
+    }
 }
