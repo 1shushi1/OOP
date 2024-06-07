@@ -16,6 +16,7 @@ public class Main {
         Employee employee1 = new Employee(new StaffID(33, "Head Of The Security"), "Mykola", "Mykolenko", Gender.MALE, 55000.0, null, null);
         Employee employee2 = new Employee(new StaffID(34, "Security Worker"), "George", "Russle", Gender.MALE, 33250.0, skills, null);
         Employee employee3 = new Employee(new StaffID(35, "Cleaner"), "Tatiana", "Alabai", Gender.FEMALE, 45560.0, null, phones);
+        //---------------------------insertion---------------------------
 //        boolean res = EmployeeController.save(employee);
 //        boolean res1 = EmployeeController.save(employee1);
 //        boolean res2 = EmployeeController.save(employee2);
@@ -25,6 +26,17 @@ public class Main {
 //        } else {
 //            System.out.println("Something goes wrong");
 //        }
-        EmployeeController.find(new StaffID(32, "Cleaning"));
+        //---------------------------finder---------------------------
+//        Employee foundEmployee1 = EmployeeController.find(new StaffID(35, "Cleaner"));
+//        System.out.println(foundEmployee1);
+        //---------------------------delete---------------------------
+//        EmployeeController.delete(new StaffID(36, "Sleeping"));
+
+        //---------------------------update---------------------------
+        phones.clear();
+        Collections.addAll(phones, "555-12366", "098-83456", "011-123123");
+        Employee employeeForUpdate = new Employee(new StaffID(37, "Security Worker"),"George", "Russle", Gender.MALE, 33250.0, skills, phones);
+        boolean updateChecker = EmployeeController.update(employeeForUpdate);
+        System.out.println("Update : " + updateChecker);
     }
 }

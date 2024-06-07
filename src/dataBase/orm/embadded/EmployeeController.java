@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class EmployeeController {
+    private Scanner s = new Scanner(System.in);
 
     //save employee
     public static boolean save(Employee employee) {
@@ -41,7 +42,7 @@ public class EmployeeController {
             List<String> skillQueries = new ArrayList<>();
             List<Skill> skills = employee.getSkills();
             if (employee.getSkills() != null) {
-                StringBuilder empSkills =  new StringBuilder();
+                StringBuilder empSkills = new StringBuilder();
                 for (int i = 0; i < skills.size(); i++) {
                     empSkills.append("(" + id + ", ");
                     empSkills.append("'" + department + "', ");
@@ -73,9 +74,11 @@ public class EmployeeController {
         }
         return false;
     }
+
     //find employee by id
-    public static void find(StaffID staffID){
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/orm", "root", "Spilberg11")){
+    public static Employee find(StaffID staffID) {
+        Employee employee = null;
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/orm", "root", "Spilberg11")) {
             long id = staffID.getId();
             String department = staffID.getDepartment();
             StringBuilder sb = new StringBuilder();
@@ -86,30 +89,50 @@ public class EmployeeController {
                     sb;
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
-            List<Skill> skills = new ArrayList<>();
-            List<String> phones = new ArrayList<>();
-            String empPhones = "";
-            while(rs.next()) {
-                long empID = rs.getInt(1);
-                String empDepartment = rs.getString(2);
+            while (rs.next()) {
                 String name = rs.getString(3);
                 String surname = rs.getString(4);
                 Gender empGender = Gender.valueOf(rs.getString(5));
                 double empSalary = rs.getDouble(6);
-                empPhones = rs.getString(7);
-//                System.out.println(empPhones);
-                if (empPhones != null) {
-                    String[] lines = empPhones.split("\n");
-                    Set<String> uniquePhones = new HashSet<>(Arrays.asList(lines));
-
-                    // Print or use unique phone numbers
-                    for (String phone : uniquePhones) {
-                        System.out.println(phone);
-                    }
+                String phone = rs.getString(7);
+                if (employee == null) {
+                    employee = new Employee(staffID, name, surname, empGender, empSalary);
                 }
+                if (phone != null) {
+                    employee.addPhone(phone);
+                }
+                String title = rs.getString(8);
+                int experience = rs.getInt(9);
+                Skill skill = null;
+                if (title != null) {
+                    skill = new Skill(title, experience);
+                }
+                employee.addSkill(skill);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        return employee;
+    }
+
+    public static boolean delete(StaffID id) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/orm", "root", "Spilberg11")) {
+            long staffID = id.getId();
+            String department = id.getDepartment();
+            StringBuilder sb = new StringBuilder();
+            sb.append("WHERE E.ID = " + staffID + " AND E.DEPARTMENT = " + "'" + department + "'");
+            String sql = "DELETE FROM EMPLOYEE AS E " + sb;
+            Statement statement = connection.createStatement();
+            if (statement.executeUpdate(sql) == 0) {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+    //update employee
+    public static boolean update(Employee employee) {
+        return delete(employee.getId()) && save(employee);
     }
 }
