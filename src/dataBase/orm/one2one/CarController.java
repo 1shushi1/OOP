@@ -1,9 +1,6 @@
 package dataBase.orm.one2one;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class CarController {
     //save
@@ -44,9 +41,38 @@ public class CarController {
     }
 
     //find
+    public static Car find(Object id) {
+        Car car = null;
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/one2one", "root", "Spilberg11")) {
+            String sql = "SELECT c.id, c.brand, c.model, c.year, e.id, e.brand, e.power, e.type, e.volume " +
+                    "FROM cars AS c " +
+                    "LEFT JOIN engines AS e ON c.engine_id = e.id " +
+                    "WHERE c.id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setObject(1, id);
+            ResultSet rs = statement.executeQuery();
 
-    public static void find(Object id){
-
+            while (rs.next()) {
+                long carId = rs.getLong(1);
+                String brand = rs.getString(2);
+                String model = rs.getString(3);
+                int year = rs.getInt(4);
+                int engineId = rs.getInt(5);
+                String engineBrand = rs.getString(6);
+                int power = rs.getInt(7);
+                String type = rs.getString(8);
+                double volume = rs.getDouble(9);
+                if (engineId > 0) {
+                    Engine engine = new Engine(engineId, engineBrand, power, type, volume);
+                    car = new Car(carId, brand, model, year, engine);
+                } else {
+                    car = new Car(carId, brand, model, year);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return car;
     }
 
     //update

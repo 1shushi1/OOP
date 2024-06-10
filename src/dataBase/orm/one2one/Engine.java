@@ -5,7 +5,7 @@ public class Engine extends Entity{
     private String type;
     private int power;
     private double volume;
-    public Engine(long id, String brand, String type, int power, double volume){
+    public Engine(long id, String brand, int power, String type, double volume){
         super(id);
         this.brand = brand;
         this.type = type;
@@ -26,6 +26,10 @@ public class Engine extends Entity{
     }
     public Object getId(){
         return super.getId();
+    }
+    @Override
+    public String toString(){
+        return "ID : " + getId() + ". Brand : " + brand + ". Type : " + type + ". Power : " + power + ". Volume : " + volume;
     }
 }
 

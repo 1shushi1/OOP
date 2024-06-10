@@ -27,4 +27,11 @@ public abstract class Entity {
     public Object getId(){
         return id;
     }
+    @Override
+    public String toString(){
+        return "Id : " + id;
+    }
+    public void setId(Object id){
+        this.id = id;
+    }
 }

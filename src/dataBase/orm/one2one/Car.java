@@ -33,4 +33,8 @@ public class Car extends Entity{
     public Engine getEngine(){
         return engine;
     }
+    @Override
+    public String toString(){
+        return "Id " + getId() + ". Brand : " + brand + ". Model : " + model + ". Year : " + year + ". Engine : " + engine;
+    }
 }
