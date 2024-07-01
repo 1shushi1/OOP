@@ -24,29 +24,42 @@ public class EngineDAO implements Dao{
             if (rs.next()){
                 long id = rs.getLong(1);
                 engine.setId(id);
+                connection.commit();
                 return engine;
             }
         } catch (SQLException e){
             e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException s){
+                s.printStackTrace();
+            }
         }
         return null;
     }
     @Override
     public Entity update(Entity entity){
         Engine engine = (Engine) entity;
-        String sql = "update engines as e set e.brand = ?, e.type = ?, e.power = ?, e.volume = ?";
+        String sql = "update engines as e set e.brand = ?, e.type = ?, e.power = ?, e.volume = ? where e.id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setString(1, engine.getBrand());
             preparedStatement.setString(2, engine.getType());
             preparedStatement.setInt(3, engine.getPower());
             preparedStatement.setDouble(4, engine.getVolume());
+            preparedStatement.setLong(5, (long) engine.getId());
             int update = preparedStatement.executeUpdate();
             if (update == 0){
                 throw new SQLException();
             }
+            connection.commit();
             return engine;
         } catch (SQLException e){
             e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException s){
+                s.printStackTrace();
+            }
         }
         return null;
     }
@@ -57,7 +70,7 @@ public class EngineDAO implements Dao{
             preparedStatement.setLong(1, (long) id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()){
-                return new Engine((long) id, rs.getString(2), rs.getInt(3), rs.getString(4), rs.getDouble(5));
+                return new Engine((int) id, rs.getString(2), rs.getInt(3), rs.getString(4), rs.getDouble(5));
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -74,9 +87,15 @@ public class EngineDAO implements Dao{
             if (delete == 0){
                 throw new SQLException();
             }
+            connection.commit();
             return engine;
         } catch (SQLException e){
             e.printStackTrace();
+            try {
+                connection.rollback();
+            } catch (SQLException s){
+                s.printStackTrace();
+            }
         }
         return null;
     }

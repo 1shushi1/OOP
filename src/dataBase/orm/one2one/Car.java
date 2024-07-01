@@ -5,18 +5,14 @@ public class Car extends Entity{
     private String model;
     private int year;
     private Engine engine;
-    public Car(long id, String brand, String model, int year){
-        super(id);
-        this.brand = brand;
-        this.model = model;
-        this.year = year;
-    }
-    public Car(long id, String brand, String model, int year, Engine engine){
+    private Transmission transmission;
+    public Car(int id, String brand, String model, int year, Engine engine, Transmission transmission){
         super(id);
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.engine = engine;
+        this.transmission = transmission;
     }
     public String getBrand(){
         return brand;
@@ -33,8 +29,11 @@ public class Car extends Entity{
     public Engine getEngine(){
         return engine;
     }
+    public Transmission getTransmission(){
+        return transmission;
+    }
     @Override
     public String toString(){
-        return "Id " + getId() + ". Brand : " + brand + ". Model : " + model + ". Year : " + year + ". Engine : " + engine;
+        return "Id " + getId() + ". Brand : " + brand + ". Model : " + model + ". Year : " + year + ". Engine : " + engine + ". Transmission : " + transmission;
     }
 }

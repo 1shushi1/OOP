@@ -5,7 +5,7 @@ public abstract class Tank implements Cloneable {
     protected double shoutDistance;
     protected double shieldThickness;
     public Tank(double speed, double shoutDistance, double shieldThickness){
-        this.speed =speed;
+        this.speed = speed;
         this.shoutDistance = shoutDistance;
         this.shieldThickness = shieldThickness;
     }

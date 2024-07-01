@@ -5,7 +5,7 @@ public class Engine extends Entity{
     private String type;
     private int power;
     private double volume;
-    public Engine(long id, String brand, int power, String type, double volume){
+    public Engine(int id, String brand, int power, String type, double volume){
         super(id);
         this.brand = brand;
         this.type = type;
